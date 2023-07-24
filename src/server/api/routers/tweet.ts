@@ -1,5 +1,5 @@
-import { useSession } from "next-auth/react";
-import { string, z } from "zod";
+
+import { z } from "zod";
 import type { createTRPCContext } from '../trpc';
 import {createTRPCRouter,
   publicProcedure,

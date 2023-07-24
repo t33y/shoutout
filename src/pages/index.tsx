@@ -1,6 +1,5 @@
 import { type NextPage } from "next";
-import { signIn, signOut, useSession } from "next-auth/react";
-import Link from "next/link";
+import { useSession } from "next-auth/react";
 import { useState } from "react";
 import {InfinteTweetFeed }from "~/components/InfinteTweetFeed";
 import { NewTweetForm } from "~/components/NewTweetForm";

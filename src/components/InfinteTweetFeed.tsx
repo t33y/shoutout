@@ -37,7 +37,7 @@ export const InfinteTweetFeed = ({tweets, isLoading, isError, hasMore=false, fet
     return <ul>
         <InfiniteScroll dataLength={tweets.length} hasMore={hasMore} next={fetchNewTweets} loader= {<LoadingSpinner/>} >
             {tweets?.map(tweet=>{
-                return <TweetCard id={tweet.id} content={tweet.content} user={tweet.user} likedByMe={tweet.likedByMe} likesCount={tweet.likesCount} createdAt={tweet.createdAt} />
+                return <TweetCard key={tweet.id} id={tweet.id} content={tweet.content} user={tweet.user} likedByMe={tweet.likedByMe} likesCount={tweet.likesCount} createdAt={tweet.createdAt} />
             })}
 
         </InfiniteScroll>
@@ -48,7 +48,7 @@ const dateFormatter = new Intl.DateTimeFormat(undefined, {dateStyle: "short" })
 
 export const TweetCard = ({id, content, likedByMe, likesCount, user, createdAt }:Tweet)=>{
 
-    return <li key={id} className=" flex gap-4 my-4 border-b px-4 py-4 ">
+    return <li className=" flex gap-4 my-4 border-b px-4 py-4 ">
         <Link href={`/profiles/${user.id}`} >   <ProfileImage src={user.image}/> 
         </Link>
         <div className=" flex flex-grow flex-col">
