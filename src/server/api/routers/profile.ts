@@ -1,0 +1,53 @@
+import { useSession } from "next-auth/react";
+import { string, z } from "zod";
+import {createTRPCRouter,
+  protectedProcedure,
+  publicProcedure,
+} from "~/server/api/trpc";
+
+export const profileRouter = createTRPCRouter({
+  getById: publicProcedure.input(
+    z.object({id:z.string()}))
+    .query(async ({input:{id}, ctx})=>{  
+      
+      const currentUserId = ctx.session?.user.id
+      const profile = await ctx.prisma.user.findUnique({
+        where: {id},
+        select:{
+          name:true,
+          image:true,
+          _count:{select:{follows:true, followers: true, tweets:true}},
+          followers: currentUserId == null? undefined : {where: {id: currentUserId}}}
+        })
+
+        if(profile == null) return
+        return {
+          name : profile.name,
+          image : profile.image,
+          tweetsCount : profile._count.tweets,
+          followersCount : profile._count.followers,
+          followsCount : profile._count.follows,
+          isFollowing : profile.followers.length > 0
+        }
+      }),
+toggleFollow: protectedProcedure.input(z.object({ userId:z.string()})).mutation(async ({input:{ userId}, ctx})=>{
+
+        const currentUserId = ctx.session.user.id
+        const currentFollowStatus = await ctx.prisma.user.findFirst({where:{id:userId, followers:{some:{id:currentUserId}}}})
+
+        let addedFollow
+        if(currentFollowStatus == null){
+          await ctx.prisma.user.update({where:{id:userId}, data:{followers:{connect:{id:currentUserId}}}})
+          addedFollow = true
+        }else{
+          await ctx.prisma.user.update({where:{id:userId}, data:{followers:{disconnect:{id:currentUserId}}}})
+          addedFollow = false
+        }
+        void ctx.ssgRevalidate?.(`/profiles/${userId}`)
+        void ctx.ssgRevalidate?.(`/profiles/${currentUserId}`)
+        return {addedFollow}
+      })
+
+
+    }) 
+  
