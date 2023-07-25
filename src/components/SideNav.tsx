@@ -5,7 +5,6 @@ import { VscAccount, VscHome, VscSignIn, VscSignOut } from 'react-icons/vsc';
 
 
 export function SideNav(){
-
     const session = useSession()
     const user = session.data?.user
 

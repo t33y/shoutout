@@ -37,7 +37,15 @@ export const InfinteTweetFeed = ({tweets, isLoading, isError, hasMore=false, fet
     return <ul>
         <InfiniteScroll dataLength={tweets.length} hasMore={hasMore} next={fetchNewTweets} loader= {<LoadingSpinner/>} >
             {tweets?.map(tweet=>{
-                return <TweetCard key={tweet.id} id={tweet.id} content={tweet.content} user={tweet.user} likedByMe={tweet.likedByMe} likesCount={tweet.likesCount} createdAt={tweet.createdAt} />
+                return <TweetCard 
+                key={tweet.id}
+                id={tweet.id}
+                content={tweet.content}
+                user={tweet.user} 
+                likedByMe={tweet.likedByMe} 
+                likesCount={tweet.likesCount} 
+                createdAt={tweet.createdAt} 
+                />
             })}
 
         </InfiniteScroll>

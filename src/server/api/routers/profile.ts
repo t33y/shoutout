@@ -8,8 +8,7 @@ import {createTRPCRouter,
 export const profileRouter = createTRPCRouter({
   getById: publicProcedure.input(
     z.object({id:z.string()}))
-    .query(async ({input:{id}, ctx})=>{  
-      
+    .query(async ({input:{id}, ctx})=>{        
       const currentUserId = ctx.session?.user.id
       const profile = await ctx.prisma.user.findUnique({
         where: {id},

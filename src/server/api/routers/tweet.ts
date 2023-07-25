@@ -19,7 +19,6 @@ export const tweetRouter = createTRPCRouter({
       return await getInfiniteFeed({
         whereClause: {userId} ,
         limit, cursor, ctx})
-
     }) ,
   infiniteFeed: publicProcedure.input(
     z.object({isFollowing:z.boolean().optional(),
