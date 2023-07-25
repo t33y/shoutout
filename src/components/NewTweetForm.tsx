@@ -11,12 +11,9 @@ import { api } from "~/utils/api";
     textArea.style.height = `${textArea.scrollHeight}px`
  }
 
-export function NewTweetForm(){
-   
+export function NewTweetForm(){   
     const session = useSession()
-
     if(session.status !== "authenticated") return null;
-
     return <Form/>
 }
 
