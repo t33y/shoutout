@@ -9,6 +9,7 @@ export function SideNav(){
     const user = session.data?.user
 
 
+
     return <nav className=" sticky top-0 px-2 py-4">
         <ul className="flex flex-col gap-2 items-start min-h-screen whitespace-nowrap">
             <li>
@@ -33,7 +34,7 @@ export function SideNav(){
             </li>)}
              <li>
                 {user == null? 
-                    <button onClick={async()=> await signIn()} >
+                    <button onClick={()=> void signIn} >
                        <IconHoverEffect>
                             <span className=' flex gap-4 items-center'>
                                 <VscSignIn className=' h-8 w-8 fill-green-700' />
@@ -41,7 +42,7 @@ export function SideNav(){
                             </span>
                         </IconHoverEffect>
                     </button>
-                    :<button onClick={async ()=> await signOut()}>
+                    :<button onClick={()=>void signOut}>
                         <IconHoverEffect>
                             <span className=' flex gap-4 items-center'>
                                 <VscSignOut className=' h-8 w-8  fill-red-700' />
