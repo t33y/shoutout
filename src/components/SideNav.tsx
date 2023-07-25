@@ -33,7 +33,7 @@ export function SideNav(){
             </li>)}
              <li>
                 {user == null? 
-                    <button onClick={()=> signIn()} >
+                    <button onClick={async()=> await signIn()} >
                        <IconHoverEffect>
                             <span className=' flex gap-4 items-center'>
                                 <VscSignIn className=' h-8 w-8 fill-green-700' />
@@ -41,7 +41,7 @@ export function SideNav(){
                             </span>
                         </IconHoverEffect>
                     </button>
-                    :<button onClick={()=>signOut()}>
+                    :<button onClick={async ()=> await signOut()}>
                         <IconHoverEffect>
                             <span className=' flex gap-4 items-center'>
                                 <VscSignOut className=' h-8 w-8  fill-red-700' />
