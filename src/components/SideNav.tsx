@@ -8,8 +8,8 @@ export function SideNav() {
   const user = session.data?.user;
 
   return (
-    <nav className=" sticky top-0 px-2 py-4">
-      <ul className="flex min-h-screen flex-col items-start gap-2 whitespace-nowrap">
+    <nav className=" fixed left-0 top-24 py-4 dark:text-white sm:px-2">
+      <ul className="flex h-screen flex-col items-start gap-2 whitespace-nowrap ">
         <li>
           <Link href="/">
             <IconHoverEffect>

@@ -12,8 +12,8 @@ const Home: NextPage = () => {
     useState<(typeof TABS)[number]>("Recent");
   return (
     <>
-      <header className=" mb-2 border-b px-4 text-lg font-bold"> Home</header>
-      {console.log(session.status)}
+      {/* <header className=" mb-2 border-b px-4 text-lg font-bold"> Home</header> */}
+
       {session.status === "authenticated" && (
         <div className="flex">
           {TABS.map((tab) => {
@@ -23,7 +23,7 @@ const Home: NextPage = () => {
                 key={tab}
                 className={` flex-grow p-2 text-center hover:bg-gray-200 focus-visible:bg-gray-200 ${
                   tab === selectedTab
-                    ? "border-b-4 border-blue-500 font-bold"
+                    ? "border-b-4 border-[#1d92ae] font-bold"
                     : ""
                 }`}
               >

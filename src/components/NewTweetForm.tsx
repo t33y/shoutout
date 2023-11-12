@@ -82,13 +82,18 @@ function Form() {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           ref={inputRef}
-          className=" flex-grow resize-none overflow-hidden p-4 text-lg outline-none"
-          placeholder="What's happenin"
+          className=" flex-grow resize-none overflow-hidden rounded-sm p-4 text-lg outline-none"
+          placeholder="Make a shout out..."
         />
       </div>
-      <Button type="submit" className=" self-end" gray={false}>
+      <Button
+        type="submit"
+        small
+        className=" self-end sm:px-4  sm:py-2"
+        gray={false}
+      >
         {" "}
-        Tweet
+        Shout Out
       </Button>
     </form>
   );
