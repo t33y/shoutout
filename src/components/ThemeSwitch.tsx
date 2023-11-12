@@ -2,9 +2,7 @@ import { Tooltip } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { BsMoon, BsSun } from "react-icons/bs";
 
-type Props = {};
-
-function ThemeSwitch({}: Props) {
+function ThemeSwitch() {
   const [theme, setTheme] = useState("Light");
 
   const handleClick = () => {
@@ -36,7 +34,7 @@ function ThemeSwitch({}: Props) {
       document.documentElement.classList.remove("dark");
       document.body.style.backgroundColor = "white";
     }
-  });
+  }, []);
 
   return (
     <Tooltip

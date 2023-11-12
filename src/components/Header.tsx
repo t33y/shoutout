@@ -5,9 +5,7 @@ import Link from "next/link";
 import { signIn, useSession } from "next-auth/react";
 import ThemeSwitch from "./ThemeSwitch";
 
-type Props = {};
-
-function Header({}: Props) {
+function Header() {
   const path = usePathname();
   const session = useSession();
   const user = session.data?.user;
